@@ -1,12 +1,12 @@
 ---
-name: instagram-reel-analyzer
-description: "Baixa e analisa a fundo um reel/video do Instagram a partir de uma URL: faz o download (mesmo com login wall, via cookies do navegador), extrai grids de frames pra ver o visual, transcreve o audio (parakeet-mlx por padrao, whisper como fallback) e entrega analise completa de hook, conteudo, formato, retencao, CTA e leitura estrategica. Use quando o usuario mandar um link de reel do Instagram e pedir pra analisar, estudar, ver o video, transcrever, ou auditar. Triggers: analisa esse reel, ve esse video, estuda esse reel, transcreve esse instagram, link do instagram, analisar reel, instagram.com/reel."
+name: content-analyzer-jj
+description: "Baixa e analisa a fundo um conteudo de Instagram, TikTok ou YouTube a partir de uma URL (reel, video, short, carrossel): faz o download (mesmo com login wall, via cookies do navegador), extrai grids de frames pra ver o visual, transcreve o audio (parakeet-mlx por padrao, whisper como fallback) e entrega analise completa de hook, conteudo, formato, retencao, CTA e leitura estrategica. Use quando o usuario mandar um link de Instagram, TikTok ou YouTube e pedir pra analisar, estudar, ver o video, transcrever, ou auditar. Triggers: analisa esse reel, analisa esse tiktok, analisa esse youtube, ve esse video, estuda esse conteudo, transcreve esse video, link do instagram/tiktok/youtube, instagram.com/reel, tiktok.com, youtube.com, youtu.be."
 allowed-tools: Bash, Read, Glob
 ---
 
-# Instagram Reel Analyzer
+# Content Analyzer JJ
 
-Pipeline pra ingerir e analisar um reel/video do Instagram a partir da URL. Resolve o problema de o Instagram bloquear acesso direto (login wall, video em blob) e de a legenda do post raramente conter o conteudo real (que esta no audio do video).
+Pipeline pra ingerir e analisar um conteudo de Instagram, TikTok ou YouTube a partir da URL (reel, video, short, carrossel). O motor e o yt-dlp, que baixa de praticamente qualquer plataforma. Resolve o problema de redes bloquearem acesso direto (login wall, video em blob) e de a legenda raramente conter o conteudo real (que esta no audio do video).
 
 ## Pre-requisitos
 Veja o `README.md` pra instalacao completa. Em resumo: `yt-dlp`, `ffmpeg`, `gallery-dl` (carrosseis), e um transcritor de audio (`parakeet-mlx` em Apple Silicon, ou `whisper` em qualquer maquina). Precisa de um navegador (Edge/Chrome) logado no Instagram, pois os cookies dele furam o login wall.
@@ -16,7 +16,7 @@ Veja o `README.md` pra instalacao completa. Em resumo: `yt-dlp`, `ffmpeg`, `gall
 Rode o script. Ele baixa, monta os grids de frames e transcreve, tudo de uma vez:
 
 ```bash
-~/.claude/skills/instagram-reel-analyzer/scripts/ingest.sh "<URL_DO_REEL>" /tmp/ig_reel
+~/.claude/skills/content-analyzer-jj/scripts/ingest.sh "<URL_DO_REEL>" /tmp/ig_reel
 ```
 
 Saida: `/tmp/ig_reel/reel.mp4`, `/tmp/ig_reel/grid_*.png` (cada grid aprox. 60s do video, 1 frame a cada 3s) e `/tmp/ig_reel/reel.txt` (transcricao). A transcricao e impressa no final.
@@ -54,7 +54,7 @@ Se voce quiser catalogar as analises numa database do Notion:
 
 1. Defina `NOTION_API_TOKEN` no ambiente e crie uma database compartilhada com sua integracao.
 2. Monte o JSON de payload com `parent.data_source_id` apontando pra SUA database (veja schema sugerido em `scripts/notion-save.sh`).
-3. Rode: `~/.claude/skills/instagram-reel-analyzer/scripts/notion-save.sh /tmp/notion_reel_payload.json`
+3. Rode: `~/.claude/skills/content-analyzer-jj/scripts/notion-save.sh /tmp/notion_reel_payload.json`
 4. O script imprime a URL da pagina criada.
 
 Se voce nao usa Notion, ignore este passo.

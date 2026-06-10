@@ -1,6 +1,6 @@
-# Instagram Reel Analyzer (Claude Code Skill)
+# Content Analyzer JJ (Claude Code Skill)
 
-Uma skill pro **Claude Code** que baixa e analisa a fundo um reel/video do Instagram a partir do link. Ela resolve dois problemas: o Instagram bloqueia o acesso direto (login wall, video em blob) e a legenda quase nunca tem o conteudo real, que esta no audio do video.
+Uma skill pro **Claude Code** que baixa e analisa a fundo um conteudo de **Instagram, TikTok ou YouTube** a partir do link (reel, video, short, carrossel). O motor e o yt-dlp, que baixa de praticamente qualquer plataforma. Ela resolve dois problemas: as redes bloqueiam o acesso direto (login wall, video em blob) e a legenda quase nunca tem o conteudo real, que esta no audio do video.
 
 O que ela faz, ponta a ponta, quando voce cola um link:
 1. **Baixa** o video (mesmo com login wall, usando os cookies do seu navegador logado).
@@ -58,11 +58,11 @@ A skill usa os cookies do **Edge** por padrao (mude com `IG_COOKIES_BROWSER=chro
 
 Copie a pasta pra dentro das skills do Claude Code:
 ```bash
-git clone https://github.com/ojuliocouto/instagram-reel-analyzer-skill.git
-mkdir -p ~/.claude/skills/instagram-reel-analyzer
-cp instagram-reel-analyzer-skill/SKILL.md ~/.claude/skills/instagram-reel-analyzer/
-cp -r instagram-reel-analyzer-skill/scripts ~/.claude/skills/instagram-reel-analyzer/
-chmod +x ~/.claude/skills/instagram-reel-analyzer/scripts/*.sh
+git clone https://github.com/ojuliocouto/content-analyzer-jj.git
+mkdir -p ~/.claude/skills/content-analyzer-jj
+cp content-analyzer-jj/SKILL.md ~/.claude/skills/content-analyzer-jj/
+cp -r content-analyzer-jj/scripts ~/.claude/skills/content-analyzer-jj/
+chmod +x ~/.claude/skills/content-analyzer-jj/scripts/*.sh
 ```
 
 Pronto. Na proxima sessao do Claude Code, a skill ja e reconhecida.
@@ -79,7 +79,7 @@ O Claude aciona a skill sozinho, baixa, transcreve, le os frames e devolve a ana
 
 Pra rodar o download na mao (sem o Claude):
 ```bash
-~/.claude/skills/instagram-reel-analyzer/scripts/ingest.sh "https://www.instagram.com/reel/XXXX/" /tmp/ig_reel
+~/.claude/skills/content-analyzer-jj/scripts/ingest.sh "https://www.instagram.com/reel/XXXX/" /tmp/ig_reel
 ```
 
 ### Flags uteis
